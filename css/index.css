@@ -116,27 +116,20 @@ img{
     }
 
     .nav-items{
-        transform: translatey(-20%);
+        background-color: black;
         position: absolute;
-        width: 80%;
         flex-direction: column;
-        transition: 0.2s all ease-out;
+        top: 4.5rem;
+        width: 960px;
+        padding: 1rem;
+        transform: translate(-200%);
+        transition: 0.3s ease-in;
     }
 
     /*STYLE TO ACTIVATE THE STYLE*/
     .nav-active{
-        transform: translatey(100%);
-    }
-
-    .active .line-1{
-        transform: rotate(-45deg) translate(-7px);
-    }
-    
-    .active .line-2{
-        display: none;
-    }
-    
-    .active .line-3{
-        transform: rotate(45deg) translate(-7px);
+        opacity: 1;
+        transform: translateX(0%);
+        align-items: space-around;
     }
 }
