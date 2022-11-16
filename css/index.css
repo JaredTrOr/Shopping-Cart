@@ -1,8 +1,8 @@
 .main-header{
     position: fixed;
     top: 0;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     padding-block: 1.3rem;
     width: 100%;
 }
@@ -16,7 +16,7 @@
 }
 
 .navbar a{
-    color: black;
+    color: white;
     text-decoration: none;
 }
 
@@ -35,15 +35,20 @@
     display: none;
 }
 
-.burger-menu div{
+.burger-menu .line{
     border-radius: 5px;
-    background-color: black;
+    background-color: white;
     height: 5px;
     width: 2.6rem;
     transition: 0.3s ease;
 }
 
 /*CONTENT---------------------------------------------------------------------*/
+.title{    
+    padding: 1rem;
+    display: inline;
+}
+
 .container{
     margin-block: 10rem;
     margin-inline: auto;
@@ -53,6 +58,8 @@
 img{
     width: 200px;
     height: 250px;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
 .cart-item{
@@ -74,6 +81,28 @@ img{
 
 .content > * {
     flex: 1;
+}
+
+.product{
+    text-align: center;
+    padding: 1rem;
+}
+
+.product > *{
+    margin-block: 10px;
+}
+
+.btn-buy button{
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    background-color: orange;
+    color: white;
+}
+
+.btn-buy button:hover{
+    background-color: rgb(219, 143, 3);
 }
 
 /*MEDIA QUERIES------------------------------------------------------------------*/
