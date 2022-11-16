@@ -1,4 +1,6 @@
 .main-header{
+    position: fixed;
+    top: 0;
     background-color: white;
     color: black;
     padding-block: 1.3rem;
@@ -43,7 +45,7 @@
 
 /*CONTENT---------------------------------------------------------------------*/
 .container{
-    margin-block: 4rem;
+    margin-block: 10rem;
     margin-inline: auto;
     width: 80%;
 }
@@ -55,7 +57,7 @@ img{
 
 .cart-item{
     padding: 1rem;
-    border: 2px solid lightgray;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -89,7 +91,6 @@ img{
         position: absolute;
         width: 80%;
         flex-direction: column;
-        z-index:-1;
         transition: 0.2s all ease-out;
     }
 
