@@ -1,5 +1,5 @@
 .main-header{
-    position: fixed;
+    position: sticky;
     top: 0;
     background-color: black;
     color: white;
@@ -51,7 +51,7 @@
 }
 
 .container{
-    margin-block: 10rem;
+    margin-block: 6rem;
     margin-inline: auto;
     width: 80%;
 }
@@ -105,12 +105,12 @@ img:hover{
     border-radius: 5px;
     padding: 10px;
     border: none;
-    background-color: orange;
+    background-color: rgb(145, 46, 238);
     color: white;
 }
 
 .btn-buy button:hover{
-    background-color: rgb(219, 143, 3);
+    background-color: rgb(123, 38, 202);
 }
 
 /*MEDIA QUERIES------------------------------------------------------------------*/
