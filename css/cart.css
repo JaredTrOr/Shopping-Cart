@@ -4,3 +4,90 @@
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
+hr{
+    background-color: #ddd;
+    height: 2px;
+    border-top:1px solid #ddd;
+}
+
+.title > *{
+    margin: 10px;
+}
+
+.img img{
+    width: 100px;
+    border: #ddd solid 1px;
+}
+
+.shopping-body{
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.options{
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.flexing{
+    height: 80%;
+    display: flex;
+    align-items: center;
+}
+
+input[type=number]{
+    border: 2px #ddd solid;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+input[type=number]:focus{
+    outline: none;
+    border: 3px rgb(196, 196, 196) solid;
+}
+
+.option-buttons{
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: transparent;
+    border: none;
+    color: rgb(124, 124, 255);
+    padding: 10px;
+}
+
+.shop-total{
+    margin-top: 7rem;
+}
+
+.shop-total > *{
+    margin-bottom: 1rem;
+}
+
+.shop-total{
+    font-size: 1.3em;
+}
+
+.buy-total{
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(123, 38, 202);
+    color: white;
+    cursor: pointer;
+    width: 6rem;
+    padding: 10px;
+}
