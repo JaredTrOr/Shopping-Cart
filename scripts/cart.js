@@ -76,3 +76,9 @@ function updateCartTotal(){
 function numberOfEachItem(items){
     
 }
+
+/*
+Check if there are elements inside our array, if there are elements
+then we need to render the elements, otherwise, we need to display a message
+saying that there are no elements in the car
+*/

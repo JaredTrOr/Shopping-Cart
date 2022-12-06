@@ -3,13 +3,17 @@ localStorage.removeItem('number-items');
 
 const buttons = document.querySelectorAll('button');
 
-const cartItems = [];
+let cartItems = [];
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
-    addItemToCart(e);
+    const id = e.target.id;
+    let itemInserted = cartItems.filter(item => item.id === id)[0];
+
+    if(cartItems.includes(itemInserted)) updateItems(itemInserted, id) 
+    else addItemToCart(e,id);
 }));
 
-function addItemToCart(e){
+function addItemToCart(e, id){
     let parentElement = e.target.parentElement.parentElement;
     let price = parentElement.querySelector('.product-price')
     .innerText.replace('$','');
@@ -19,21 +23,25 @@ function addItemToCart(e){
     let parentImage = parentElement.parentElement
     let image = parentImage.querySelector('.link-img').firstElementChild.getAttribute('src');
 
-    let product = {price,info,image}
+    let product = {id,price,info,image, amount: 1}
     cartItems.push(product);
-    localStorage.setItem('shopping-cart', JSON.stringify(cartItems));
 
+    addToLocalStorage();
     showMessage(info);
-    numberOfItems();
 }
 
-function numberOfItems(){
-    const numberOfItemsElement = document.getElementById('number-items');
-    let number = cartItems.length;
-    numberOfItemsElement.innerHTML = number;
+function updateItems(itemInserted, id){
+    showMessage(itemInserted.info);
 
-    //Add the number of items to localstorage
-    localStorage.setItem('number-items',number);
+    let copyItems = cartItems.filter(item => item.id !== id);
+    itemInserted.amount += 1;
+    copyItems.push(itemInserted);
+    cartItems = copyItems;
+    addToLocalStorage();
+}
+
+function addToLocalStorage(){
+    localStorage.setItem('shopping-cart', JSON.stringify(cartItems));
 }
 
 function showMessage(info){
