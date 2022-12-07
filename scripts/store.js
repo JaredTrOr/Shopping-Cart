@@ -28,6 +28,7 @@ function addItemToCart(e, id){
 
     addToLocalStorage();
     showMessage(info);
+    setNumber(cartItems);
 }
 
 function updateItems(itemInserted, id){
@@ -38,10 +39,17 @@ function updateItems(itemInserted, id){
     copyItems.push(itemInserted);
     cartItems = copyItems;
     addToLocalStorage();
+    setNumber();
 }
 
 function addToLocalStorage(){
     localStorage.setItem('shopping-cart', JSON.stringify(cartItems));
+}
+
+function setNumber(){
+    let numberOfItems = 0;
+    cartItems.forEach(item => {numberOfItems += item.amount;});
+    document.getElementById('number-items').innerHTML = numberOfItems;
 }
 
 function showMessage(info){
