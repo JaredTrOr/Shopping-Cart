@@ -56,6 +56,7 @@ function showMessage(info){
         confirmButtonText: 'Close',
         icon: 'success'
     });
+    cartInfo = [];
 }
 
 

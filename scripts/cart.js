@@ -2,7 +2,7 @@ let cartInfo = [];
 renderItems();
 
 function renderItems(){
-    cartInfo = JSON.parse(localStorage.getItem('shopping-cart'));
+    cartInfo = JSON.parse(localStorage.getItem('shopping-cart') || '[]');
     const shoppingBody = document.querySelector('.shopping-body');
     if(cartInfo.length != 0){    
         let shoppingProduct = '';
@@ -46,7 +46,7 @@ function renderItems(){
             <div>
                 Total: <span id="total"></span>
             </div>
-            <button id="buy-button" class="buy-total">Buy</button>
+            <button id="buy-button" onclick='buyButton()' class="buy-total">Buy</button>
         </div>
         
         `
@@ -61,7 +61,7 @@ function renderItems(){
         let noProductsMessage = '';
         noProductsMessage += `
         <div class='no-products'>
-            <h2>You haven't selected any products yet...</h2>
+            <h2>No products available</h2>
             <img class='no-products-img' src="../images/NoProducts.png" alt="">
         </div>
         `
@@ -102,4 +102,17 @@ function calculateTotal(){
     document.querySelector('#total').innerHTML = `$${total}`;
 }
 
+function buyButton(){
+    const total = document.querySelector('#total').innerHTML;
+    Swal.fire({
+        title: 'Thank you for your purchase!!',
+        text: `The total is: ${total}`,
+        confirmButtonText: 'Close',
+        icon: 'success'
+    });
+
+    localStorage.removeItem('shopping-cart');
+    setNumber();
+    renderItems();
+}
 
