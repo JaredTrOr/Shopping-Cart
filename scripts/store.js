@@ -46,9 +46,7 @@ function addToLocalStorage(){
 }
 
 function setNumber(){
-    let numberOfItems = 0;
-    cartItems.forEach(item => {numberOfItems += item.amount;});
-    document.getElementById('number-items').innerHTML = numberOfItems;
+    document.getElementById('number-items').innerHTML = cartItems.length;
 }
 
 function showMessage(info){

@@ -4,7 +4,7 @@ renderItems();
 function renderItems(){
     cartInfo = JSON.parse(localStorage.getItem('shopping-cart'));
     const shoppingBody = document.querySelector('.shopping-body');
-    if(cartInfo != null){    
+    if(cartInfo.length != 0){    
         let shoppingProduct = '';
 
         cartInfo.forEach(item => {
@@ -31,7 +31,7 @@ function renderItems(){
                     </div>
 
                     <div class="item-amount flexing">
-                        <input type="number" value="${item.amount}" min="0">
+                        <input type="number" value="${item.amount}" onchange='updateAmount(${item.id}, value)' min="1">
                     </div>
 
                     <div class="item-price flexing"> 
@@ -53,6 +53,8 @@ function renderItems(){
 
         setNumber();
         shoppingBody.innerHTML = shoppingProduct + shopTotal;
+        calculateTotal();
+
         //The appendChild only works with node elements and doesn´t work with strings
     }
     else{
@@ -69,8 +71,13 @@ function renderItems(){
     
 }
 
-function updateItems(){
-
+function updateAmount(itemId, value){
+    let itemSelected = cartInfo.find(item => item.id == itemId);
+    itemSelected.amount = value;
+    let copyItems = cartInfo.filter(item => item.id != itemId);
+    copyItems.push(itemSelected);
+    cartInfo = copyItems;
+    calculateTotal();
 }
 
 function removeItems(id){
@@ -78,11 +85,21 @@ function removeItems(id){
     cartInfo = copyItems;
     localStorage.setItem('shopping-cart', JSON.stringify(cartInfo));
     renderItems();
+    setNumber();
 }
 
 function setNumber(){
-    let numberOfItems = 0;
-    cartInfo.forEach(item => {numberOfItems += item.amount;});
-    document.getElementById('number-items').innerHTML = numberOfItems;
+    document.getElementById('number-items').innerHTML = cartInfo.length;
 }
+
+function calculateTotal(){
+    let subtotal = 0;
+    let total = 0;
+    cartInfo.forEach(product => {
+        subtotal = product.price * product.amount;
+        total += subtotal;
+    });
+    document.querySelector('#total').innerHTML = `$${total}`;
+}
+
 
