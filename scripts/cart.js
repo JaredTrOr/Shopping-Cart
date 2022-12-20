@@ -1,11 +1,12 @@
-const cartInfo = JSON.parse(localStorage.getItem('shopping-cart'));
+let cartInfo = [];
 renderItems();
 
 function renderItems(){
+    cartInfo = JSON.parse(localStorage.getItem('shopping-cart'));
     const shoppingBody = document.querySelector('.shopping-body');
-
     if(cartInfo != null){    
         let shoppingProduct = '';
+
         cartInfo.forEach(item => {
             shoppingProduct +=  
             `
@@ -22,13 +23,8 @@ function renderItems(){
                         </div>
                         <div class="options">
                             <div>
-                                <button class="remove option-buttons">
+                                <button id='${item.id}' onclick='removeItems(${item.id})' class="option-buttons">
                                     Remove item
-                                </button>
-                            </div>
-                            <div class="buy-now">
-                                <button class="buy option-buttons">
-                                    Buy now
                                 </button>
                             </div>
                         </div>
@@ -55,14 +51,17 @@ function renderItems(){
         
         `
 
+        setNumber();
         shoppingBody.innerHTML = shoppingProduct + shopTotal;
         //The appendChild only works with node elements and doesn´t work with strings
     }
     else{
         let noProductsMessage = '';
         noProductsMessage += `
-        <h2>You haven't selected any products yet...</h2>
-        <img class='no-products-img' src="../images/NoProducts.png" alt="">
+        <div class='no-products'>
+            <h2>You haven't selected any products yet...</h2>
+            <img class='no-products-img' src="../images/NoProducts.png" alt="">
+        </div>
         `
         
         shoppingBody.innerHTML = noProductsMessage;
@@ -70,16 +69,20 @@ function renderItems(){
     
 }
 
-function updateCartTotal(){
+function updateItems(){
 
 }
 
-function numberOfEachItem(items){
-    
+function removeItems(id){
+    const copyItems = cartInfo.filter(item => item.id != id);
+    cartInfo = copyItems;
+    localStorage.setItem('shopping-cart', JSON.stringify(cartInfo));
+    renderItems();
 }
 
-/*
-Check if there are elements inside our array, if there are elements
-then we need to render the elements, otherwise, we need to display a message
-saying that there are no elements in the car
-*/
+function setNumber(){
+    let numberOfItems = 0;
+    cartInfo.forEach(item => {numberOfItems += item.amount;});
+    document.getElementById('number-items').innerHTML = numberOfItems;
+}
+

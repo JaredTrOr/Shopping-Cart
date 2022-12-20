@@ -26,7 +26,7 @@ hr{
     grid-template-columns: 3fr 1fr 1fr;
 }
 
-.shopping-body{
+.no-products{
     display: flex;
     flex-direction: column;
     align-items: center;

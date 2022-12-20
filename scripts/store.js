@@ -1,13 +1,12 @@
-localStorage.removeItem('shopping-cart');
-localStorage.removeItem('number-items');
-
 const buttons = document.querySelectorAll('button');
+const LOCAL_STORAGE_KEY = 'shopping-cart';
 
-let cartItems = [];
+let cartItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+setNumber();
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
     const id = e.target.id;
-    let itemInserted = cartItems.filter(item => item.id === id)[0];
+    let itemInserted = cartItems.find(item => item.id === id);
 
     if(cartItems.includes(itemInserted)) updateItems(itemInserted, id) 
     else addItemToCart(e,id);
@@ -43,7 +42,7 @@ function updateItems(itemInserted, id){
 }
 
 function addToLocalStorage(){
-    localStorage.setItem('shopping-cart', JSON.stringify(cartItems));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cartItems));
 }
 
 function setNumber(){
@@ -60,5 +59,6 @@ function showMessage(info){
         icon: 'success'
     });
 }
+
 
 
